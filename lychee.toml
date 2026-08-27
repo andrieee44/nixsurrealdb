@@ -1,0 +1,1 @@
+exclude = [ '\$%7B[A-Za-z]+%7D' ]
