@@ -4,7 +4,6 @@
   ...
 }:
 {
-  env.NIXPKGS_ALLOW_UNFREE = "1";
   languages.nix.enable = true;
 
   git-hooks.hooks = {
@@ -37,8 +36,12 @@
 
     flake-checks = {
       enable = true;
-      entry = ''nix flake check --impure --all-systems "${config.git.root}"'';
       pass_filenames = false;
+
+      entry = ''
+        NIXPKGS_ALLOW_UNFREE="1" \
+          nix flake check --impure --all-systems "${config.git.root}"
+      '';
     };
 
     # YAML
