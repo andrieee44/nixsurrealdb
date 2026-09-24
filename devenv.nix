@@ -29,13 +29,10 @@
     flake-checks = {
       enable = true;
       pass_filenames = false;
-      extraPackages = [ pkgs.bash ];
 
       entry = ''
-        sh -c '
-          NIXPKGS_ALLOW_UNFREE="1" \
-            nix flake check --impure --all-systems "${config.git.root}"
-        '
+        env NIXPKGS_ALLOW_UNFREE="1"
+          nix flake check --impure --all-systems "${config.git.root}"
       '';
     };
 
